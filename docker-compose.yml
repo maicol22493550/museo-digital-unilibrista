@@ -1,0 +1,48 @@
+# Levanta todo con:  docker compose up --build
+name: museo-segundo-corte             # nombre fijo: así "docker compose down" funciona aunque cambies el nombre de la carpeta
+services:
+  db:                                  # Base de datos MySQL
+    image: mysql:8.4
+    container_name: museo_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - museo_mysql:/var/lib/mysql                 # los datos sobreviven al apagar
+      - ./db/init:/docker-entrypoint-initdb.d:ro   # corre 01, 02, 03 .sql la primera vez
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:                                 # Aplicación (HTML/CSS/JS + servidor)
+    build: .
+    container_name: museo_web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db                      # dentro de Docker, el host se llama como el servicio
+      DB_PORT: 3306
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "8000:8000"
+
+  adminer:                             # Visor web de la base de datos (para la sustentación)
+    image: adminer:4
+    container_name: museo_adminer
+    depends_on: [db]
+    ports:
+      - "8080:8080"
+
+volumes:
+  museo_mysql:

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c8102e">
+  <meta name="description" content="Museo Digital Unilibrista: historia, proyectos y comunidad de Ingeniería de Sistemas.">
+  <title>Museo Digital Unilibrista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/vistas.css">
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <header id="header">
+    <div class="bar wrap">
+      <a href="#inicio" class="brand" aria-label="Museo Digital Unilibrista: ir al inicio">
+        <svg class="brand-shield" width="39" height="44" viewBox="0 0 40 44" fill="none" aria-hidden="true">
+          <path d="M20 2 4 8v14c0 10 7 18.5 16 20 9-1.5 16-10 16-20V8L20 2Z" fill="#c8102e" stroke="#8a1026" stroke-width="1.5"/>
+          <path d="M20 6 7 11v12c0 8 5.8 15 13 16.5C27.2 38 33 31 33 23V11L20 6Z" fill="#8a1026"/>
+          <text x="20" y="27" text-anchor="middle" fill="#fff" font-size="12" font-family="Montserrat, sans-serif" font-weight="700">UL</text>
+        </svg>
+        <span><b>MUSEO DIGITAL</b><small>INGENIERÍA DE SISTEMAS</small></span>
+      </a>
+      <button id="menuButton" class="menu-button" type="button" aria-expanded="false" aria-controls="nav">☰ <span>Menú</span></button>
+      <nav id="nav" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#inicio/historia">Historia</a>
+        <a href="#inicio/proyecto">Proyectos</a>
+        <a href="#inicio/investigacion">Investigación</a>
+        <a href="#inicio/premio">Premios</a>
+        <a href="#inicio/persona">Hall de la Fama</a>
+        <a href="#inicio/evento">Eventos</a>
+        <a href="#inicio/galeria">Galería</a>
+        <a href="#explorar" class="nav-search" aria-label="Buscar en el museo">⌕</a>
+        <a href="#acceso" id="accessLink">Ingresar</a>
+        <a href="#aporte" class="nav-cta">Aportar contenido</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main"></main>
+  <footer>
+    <div class="wrap footer-grid">
+      <div><strong>Museo Digital Unilibrista</strong><p>Ingeniería de Sistemas · Universidad Libre</p><p class="footer-note">Proyecto académico demostrativo. Los registros de ejemplo requieren verificación antes de su publicación institucional.</p></div>
+      <div><strong>Explorar</strong><a href="#explorar">Colección</a><a href="#inicio/historia">Nuestra historia</a><a href="#inicio/galeria">Galería</a></div>
+      <div><strong>Participa</strong><a href="#acceso">Iniciar sesión</a><a href="#aporte">Compartir una memoria</a><p>Diseño adaptable y navegación por teclado.</p></div>
+    </div>
+    <p class="footer-bottom">© Museo Digital Unilibrista · Prototipo académico</p>
+  </footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+  <script src="/inicio.js" defer></script>
+  <script src="/acceso.js" defer></script>
+  <script src="/vistas.js" defer></script>
+</body>
+</html>
